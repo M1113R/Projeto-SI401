@@ -7,6 +7,22 @@ body{
     font-family: sans-serif;
     background: linear-gradient(#141e30, #243b55);
 }
+
+.login-title {
+  font-size: 2rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 7.5rem;
+}
+
+.login-title img {
+  width: 65px;
+  height: 65px;
+  margin-right: 15px;
+}
+
 .login-box{
     position: absolute;
     top: 50%;
@@ -18,15 +34,18 @@ body{
     box-sizing: border-box;
     border-radius: 10px;
 }
+
 .login-box h2{
     margin: 0 0 30px;
     padding: 0;
     color: #fff;
     text-align: center;
 }
+
 .login-box .user-box{
     position: relative;
 }
+
 .login-box .user-box input {
     width: 100%;
     padding: 10px 0;
@@ -38,6 +57,7 @@ body{
     outline: none;
     background: transparent;
   }
+
   .login-box .user-box label {
     position: absolute;
     top:0;
@@ -48,6 +68,7 @@ body{
     pointer-events: none;
     transition: .5s;
   }
+
   .login-box .user-box input:focus ~ label,
   .login-box .user-box input:valid ~ label{
       top: -20px;
@@ -55,6 +76,7 @@ body{
       color: #03e9f4;
       font-size: 12px;
   }
+
   .login-box form a{
       position: relative;
       display: inline-block;
