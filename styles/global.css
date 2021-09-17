@@ -3,6 +3,11 @@
     margin: 0;
     padding: 0;
     font-family: "Roboto";
+    color: #fff;
+}
+
+input {
+  color: black;
 }
 
 button:hover {
@@ -35,13 +40,25 @@ body {
 }
 
 .header a {
+  display: block;
   margin-left: 17rem;
   font-size: 2rem;
   max-width: 250px;
   transition: all .3s;
+  text-decoration: none;
+  color: #fff;
+}
+
+.header .activePage {
+  color: #717D7E;
 }
 
 .header a:hover {
   opacity: 0.5;
   cursor: pointer;
+}
+
+.content {
+  margin: 100px auto;
+  max-width: 1180px;
 }
