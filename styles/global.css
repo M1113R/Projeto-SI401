@@ -10,38 +10,19 @@ input {
   color: black;
 }
 
-button:hover {
-    cursor: "pointer";
-}
-
 body {
   background: linear-gradient(#141e30, #243b55);
 }
 
-.header {
-  padding: 5px 25px;
+.flex-menu {
+  background-color: #2A4365;
   display: flex;
-  color: #fff;
-  background: #141e30;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.header aside {
-  display: flex;
-  align-items: center;
-  max-width: 250px;
-}
-
-.header aside img {
-  width: 55px;
-  height: 55px;
-  margin-right: 15px;
+  justify-content: space-between;
 }
 
 .header a {
-  display: block;
-  margin-left: 17rem;
+  display: inline;
+  justify-content: space-between;
   font-size: 2rem;
   max-width: 250px;
   transition: all .3s;
@@ -58,7 +39,43 @@ body {
   cursor: pointer;
 }
 
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #2A4365;
+}
+
+.menu li a {
+  display: flex;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+
+.menu li {
+  float: left;
+}
+
 .content {
   margin: 100px auto;
   max-width: 1180px;
+  text-align: center;
 }
+
+.active {
+  background-color: #141e30;
+}
+
+.panel {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid;
+}
+
+select, option {
+  color: black;
+}
+
+

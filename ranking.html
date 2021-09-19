@@ -9,6 +9,7 @@
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="styles/global.css">
       <link rel="stylesheet" type="text/css" href="styles/login.css" >
+      <link rel="stylesheet" type="text/css" href="styles/ranking.css">
       <link rel="icon" href="assets/img/logo.png">
       
       <title>Campo Minado | Ranking</title>
@@ -16,18 +17,116 @@
     </head>
 
     <body>
-
       <header class="header">
-        <aside>
-          <img src="assets/img/logo.png" alt="bomb image" />
-          <h2>Campo Minado</h2>
-        </aside>
-
-        <a href="game.html">Jogar</a>
-        <a href="ranking.html" class="activePage">Ranking</a>
-        <a href="user.html">Usuário</a>
+        <nav class="flex-menu">
+          <div class="menu">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="game.html">Jogar</a></li>
+                <li class="active"><a href="ranking.html">Ranking</a></li>
+                <li><a href="user.html">Usuário</a></li>
+            </ul>
+          </div>
+          <div class="menu">
+          <ul>
+              <li><a href="login.html">Desconectar</a></li>
+          </ul>
+        </div>
+      </nav>
       </header>
-      
+      <main class="content">
+        <div class="ranking-background">
+          <div class="titulo-ranking">
+            <h1>Ranking</h1>
+            <div class="select">
+              <label>Tipo:</label>
+              <select>
+                <option selected>Vitórias</option>
+                <option >Número de Jogos</option>
+                <option >Melhor Tempo</option>
+              </select>
+            </div>
+          </div>
+          <div class="table">
+            <table class="tabela">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Usuário</th>
+                  <th>Vitórias</th>
+                  <th>Numero de Jogos</th>
+                  <th>Melhor Tempo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Miller</td>
+                  <td>20</td>
+                  <td>50</td>
+                  <td>05:03:12</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Fischer</td>
+                  <td>19</td>
+                  <td>50</td>
+                  <td>08:24:87</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Micael</td>
+                  <td>18</td>
+                  <td>50</td>
+                  <td>09:15:43</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Miller</td>
+                  <td>20</td>
+                  <td>50</td>
+                  <td>05:03:12</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Fischer</td>
+                  <td>19</td>
+                  <td>50</td>
+                  <td>08:24:87</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Micael</td>
+                  <td>18</td>
+                  <td>50</td>
+                  <td>09:15:43</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Miller</td>
+                  <td>20</td>
+                  <td>50</td>
+                  <td>05:03:12</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Fischer</td>
+                  <td>19</td>
+                  <td>50</td>
+                  <td>08:24:87</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Micael</td>
+                  <td>18</td>
+                  <td>50</td>
+                  <td>09:15:43</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        </div>
+      </main>
     </body>
 
 </html>

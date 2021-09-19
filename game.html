@@ -8,7 +8,8 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="styles/global.css">
-      <link rel="stylesheet" type="text/css" href="styles/login.css" >
+      <link rel="stylesheet" type="text/css" href="styles/login.css">
+      <link rel="stylesheet" type="text/css" href="styles/game.css">
       <link rel="icon" href="assets/img/logo.png">
       
       <title>Campo Minado | Jogar</title>
@@ -17,16 +18,38 @@
 
     <body>
       <header class="header">
-        <aside>
-          <img src="assets/img/logo.png" alt="bomb image" />
-          <h2>Campo Minado</h2>
-        </aside>
-
-        <a href="game.html" class="activePage">Jogar</a>
-        <a href="ranking.html">Ranking</a>
-        <a href="user.html">Usuário</a>
+        <nav class="flex-menu">
+              <div class="menu">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li class="active"><a href="game.html">Jogar</a></li>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="user.html">Usuário</a></li>
+                </ul>
+            </div>
+            <div class="menu">
+              <ul>
+                  <li><a href="login.html">Desconectar</a></li>
+              </ul>
+          </div>
+        </nav>
       </header>
-      
+      <main class="content">
+        <div class="condicao">
+          <label>Dificuldade:</label>
+          <select>
+            <option selected>Fácil</option>
+            <option>Intermediário</option>
+            <option>Difícil</option>
+          </select>
+        </div>
+        <br>
+        <hr>
+        <div class="game">
+          <img src="assets/img/table.png">
+        </div>
+        <hr>
+      </main>
     </body>
 
 </html>

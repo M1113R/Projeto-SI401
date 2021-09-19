@@ -1,0 +1,29 @@
+.content .ranking-background {
+    background: rgba(0,0,0,0.5);
+    
+}
+
+.ranking-background .titulo-ranking {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1A365D;
+}
+
+.ranking-background .titulo-ranking label {
+    font-weight: bold;
+}
+
+.table {
+    text-align: center;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.tabela {
+    width: 100%;
+}
+
+.select {
+    padding-top: 7px;
+}
