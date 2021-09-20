@@ -9,6 +9,10 @@
     background-color: #1A365D;
 }
 
+.titulo-ranking {
+    padding: 0 5px;
+}
+
 .ranking-background .titulo-ranking label {
     font-weight: bold;
 }

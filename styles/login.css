@@ -24,7 +24,7 @@ body{
   margin-right: 15px;
 }
 
-.form{
+.form {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -36,14 +36,14 @@ body{
     border-radius: 10px;
 }
 
-.form h2{
+.form h2 {
     margin: 0 0 30px;
     padding: 0;
     color: #fff;
     text-align: center;
 }
 
-.form .form-input{
+.form .form-input {
     position: relative;
 }
 
@@ -71,14 +71,14 @@ body{
   }
 
   .form .form-input input:focus ~ label,
-  .form .form-input input:valid ~ label{
+  .form .form-input input:valid ~ label {
       top: -20px;
       left: 0;
       color: #03e9f4;
       font-size: 12px;
   }
 
-  .form form a{
+  .form form a {
       position: relative;
       display: inline-block;
       padding: 10px 20px;

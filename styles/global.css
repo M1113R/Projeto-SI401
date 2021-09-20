@@ -34,9 +34,41 @@ body {
   color: #717D7E;
 }
 
+.header li {
+  transition: all .3s;
+}
+
+.header li:hover {
+  background: #1b2b41;
+}
+
 .header a:hover {
   opacity: 0.5;
   cursor: pointer;
+}
+
+.header .logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .menu-logout {
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.header .menu-logout img {
+  margin-left: 15px;
 }
 
 .menu ul {
