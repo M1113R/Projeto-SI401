@@ -1,0 +1,30 @@
+.content {
+    background-color: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.container {
+    display: flex;
+}
+
+.tabela {
+    padding-top: 20px;
+}
+
+.table {
+    text-align: center;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.status {
+    width: 100%;
+    margin-left: 150px;
+    text-align: center;
+}
+
+.partida {
+    padding-top: 10px;
+}
