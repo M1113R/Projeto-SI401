@@ -11,6 +11,8 @@
       <link rel="stylesheet" type="text/css" href="styles/game.css">
       <link rel="icon" href="assets/img/logo.png">
       
+      <script src="scripts/game.js"></script>
+
       <title>Campo Minado | Jogar</title>
 
     </head>
@@ -42,30 +44,31 @@
         <div class="game-options ">
           <section>
             <label>Tamanho do Tabuleiro:</label>
-            <input class="game-size" type="number">
+            <input value="3" id="game-size" class="game-size" type="number" min="3">
           </section>
           <section>
             <label>Número de Bombas:</label>
-            <input class="game-size" type="number">
+            <input value="1" id="game-bombs" class="game-size" type="number" min="1">
           </section>
           <section >
             <label>Dificuldade:</label>
-            <select>
-              <option selected>Fácil</option>
-              <option>Intermediário</option>
-              <option>Difícil</option>
+            <select id="game-level">
+              <option value="easy">Fácil</option>
+              <option value="normal" selected>Intermediário</option>
+              <option value="hard">Difícil</option>
             </select>
           </section>
           <section >
             <label>Modo de Jogo:</label>
-            <select>
-              <option selected>Normal</option>
-              <option>Rivotril</option>
+            <select id="game-mode">
+              <option value="normal" selected>Normal</option>
+              <option value="rivotril">Rivotril</option>
             </select>
           </section>
         </div>
         <div class="game">
-          <img width="620px" src="assets/img/table.png">
+          <button class="play-button" onclick="getInitialSetup()">Jogar</button>
+          <div class="board"></div>
         </div>
 
         <section class="cheat-menu">
