@@ -30,6 +30,18 @@
 
     background: #44475a;
     border: 1px solid #bd93f9;
+
+    transition: all .3s;
+}
+
+.game .row span:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+
+.bomb {
+ color: red;
 }
 
 .cheat-button {
