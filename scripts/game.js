@@ -8,11 +8,20 @@ let boardParams = {
   bombsPositions: [],
 }
 
+let clicks = 0;
+
 const AROUND_CELL_OPERATORS = [
   [-1, -1], [-1, 0], [-1, 1],
   [0, -1], [0, 1],
   [1, -1], [1, 0], [1, 1],
 ];
+
+function handleBombInput() {
+  const size = document.querySelector("#game-size").value;
+  const bombInput = document.querySelector("#game-bombs");
+  bombInput.setAttribute("max", size);
+  bombInput.value = size;
+}
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -20,6 +29,20 @@ function getRandomInt(min, max) {
 
 function verifyIfPositionIsABomb(position) {
   return boardParams.bombsPositions.join("").includes(position.toString());
+}
+
+function cheat() {
+  const ele = document.getElementsByClassName("bomb");
+  for (let i = 0; i < ele.length; ++i) {
+    const bomb = ele[i];
+    bomb.innerHTML = "💣";
+  }
+  setTimeout(() => {
+    for (let i = 0; i < ele.length; ++i) {
+      const bomb = ele[i];
+      bomb.innerHTML = "";
+    }
+  }, 5000); //alterar para ser proporcional ao numero de bombas e do tabuleiro
 }
 
 function generateNewBoard() {
@@ -46,11 +69,16 @@ function generateNewBoard() {
       const printableValue = "";
       $cell.innerHTML = printableValue;
       $cell.id = `${x}-${y}`;
-      if (printableValue === "💣") $cell.classList.add('bomb');
+      if (boardParams.board[x][y] === "💣") $cell.classList.add("bomb");
+
       $cell.addEventListener("click", function printValue() {
         const element = document.getElementById(`${x}-${y}`);
         element.innerHTML = boardParams.board[x][y];
-        if (element.textContent === "💣") alert("Game Over");
+        if (element.textContent === "💣") {
+          alert("Game Over");
+        } else {
+          checkSquare();
+        }
       });
       $row.appendChild($cell);
     }
@@ -58,8 +86,6 @@ function generateNewBoard() {
     board.appendChild($row);
   }
 }
-
-
 
 function generateBombsPositionsAndInsert() {
   boardParams.bombsPositions = [];
@@ -101,7 +127,9 @@ function clearBoard() {
     mode: "normal",
     level: "normal",
     board: []
-  }
+  };
+
+  clicks = 0;
 
   const board = document.querySelector(".board");
 
@@ -122,5 +150,16 @@ function getInitialSetup() {
   boardParams.level = level;
 
   generateNewBoard();
+}
+
+function checkSquare() {
+  clicks++;
+  const squares = boardParams.columns * boardParams.rows;
+  // console.log("clicks:" + clicks)
+  // console.log("squares:" + squares)
+  // console.log("bombs:" + boardParams.bombs)
+  if (clicks === (squares - boardParams.bombs)) {
+    alert("WIN!!!");
+  }
 }
 

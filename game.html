@@ -44,11 +44,11 @@
         <div class="game-options ">
           <section>
             <label>Tamanho do Tabuleiro:</label>
-            <input value="3" id="game-size" class="game-size" type="number" min="3">
+            <input onclick="handleBombInput()" value="3" id="game-size" class="game-size" type="number" min="3">
           </section>
           <section>
             <label>Número de Bombas:</label>
-            <input value="1" id="game-bombs" class="game-size" type="number" min="1">
+            <input value="1" id="game-bombs" class="game-size" type="number" max="3" min="1">
           </section>
           <section >
             <label>Dificuldade:</label>
@@ -72,7 +72,7 @@
         </div>
 
         <section class="cheat-menu">
-          <button class="cheat-button">Trapaça</button>
+          <button class="cheat-button" onclick="cheat()">Trapaça</button>
         </section>
 
       </main>
