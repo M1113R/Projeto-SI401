@@ -6,7 +6,12 @@ let boardParams = {
   level: "normal",
   board: [],
   bombsPositions: [],
+  finalTime: 0
 }
+
+let history = [];
+
+let gameOver = false;
 
 let clicks = 0;
 
@@ -75,6 +80,7 @@ function generateNewBoard() {
         const element = document.getElementById(`${x}-${y}`);
         element.innerHTML = boardParams.board[x][y];
         if (element.textContent === "💣") {
+          gameOver = true;
           alert("Game Over");
         } else {
           checkSquare();
@@ -136,12 +142,16 @@ function clearBoard() {
   board.innerHTML = "";
 }
 
-function getInitialSetup() {
+function startGame() {
   clearBoard();
   const size = document.querySelector("#game-size").value;
   const bombs = document.querySelector("#game-bombs").value;
   const level = document.querySelector("#game-level").value;
   const mode = document.querySelector("#game-mode").value;
+
+  if (mode === "normal") {
+    startTimeCount();
+  }
 
   boardParams.rows = size;
   boardParams.columns = size;
@@ -152,13 +162,30 @@ function getInitialSetup() {
   generateNewBoard();
 }
 
+function startTimeCount() {
+  const timer = document.querySelector(".time-display");
+  let time = 0;
+  setInterval(() => {
+    if (gameOver) {
+      boardParams.finalTime = time;
+      return;
+    }
+    time++;
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
+    const [secondLeft, secondRight] = String(seconds).padStart(2, "0").split("");
+    timer.innerHTML = "Tempo: " + minuteLeft + minuteRight + ":" + secondLeft + secondRight;
+  }, 1000);
+}
+
 function checkSquare() {
   clicks++;
+  const cellsOpened = document.querySelector(".opened-cells");
+  cellsOpened.innerHTML = "Células Abertas: " + clicks;
   const squares = boardParams.columns * boardParams.rows;
-  // console.log("clicks:" + clicks)
-  // console.log("squares:" + squares)
-  // console.log("bombs:" + boardParams.bombs)
   if (clicks === (squares - boardParams.bombs)) {
+    gameOver = true;
     alert("WIN!!!");
   }
 }

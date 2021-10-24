@@ -1,3 +1,8 @@
+/* .content {
+    height: 70vh;
+    padding: 2rem;
+} */
+
 .game-options {
     display: flex;
     align-items: center;
@@ -42,6 +47,10 @@
 
 .bomb {
  color: red;
+}
+
+.time-display {
+    margin-bottom: 5px;
 }
 
 .cheat-button {
