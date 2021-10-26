@@ -86,6 +86,8 @@ function generateNewBoard() {
           alert("Game Over");
           //saveHistory("defeat");
         } else {
+          if (element.classList.contains('opened')) return;
+          element.classList.add('opened');
           checkSquare();
         }
       });
