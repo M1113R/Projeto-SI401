@@ -1,122 +1,126 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="styles/global.css">
-      <link rel="stylesheet" type="text/css" href="styles/login.css">
-      <link rel="stylesheet" type="text/css" href="styles/profile.css">
-      <link rel="stylesheet" type="text/css" href="styles/ranking.css">
-      <link rel="icon" href="assets/img/logo.png">
-      <title>Campo Minado | Perfil</title>
-    </head>
-    <body>
-      <header class="header">
-        <nav class="flex-menu">
-          <div class="menu">
-            <ul>
-              <li><a href="index.html">Início</a></li>
-              <li><a href="game.html">Jogar</a></li>
-              <li><a href="ranking.html">Ranking</a></li>
-              <li><a href="user.html">Usuário</a></li>
-              <li class="active"><a href="profile.html">Perfil</a></li>
-            </ul>
-          </div>
-          <div class="menu-logout">
-            <aside class="logout">
-                bem vindo, usuário
-                <a href="login.html" class="logout-link">
-                    <img src="assets/img/logout-icon.png" width="25" />
-                </a>
-            </aside>
-          </div>
-        </nav>
-      </header>
-      <main class="content">
-        <div class="container">
-            <div class="panel">
-                <img src="assets/img/user.png" alt="">
-            </div>
-            <div class="status">
-                <h2>Histórico</h2>
-                <table class="tabela">
-                    <thead>
-                        <tr>
-                            <th>Número de Jogos</th>
-                            <th>Vitórias</th>
-                            <th>Melhor Tempo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>100</td>
-                            <td>20</td>
-                            <td>05:03:87</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="partida">
-            <table class="tabela">
-                <thead>
-                    <tr>
-                        <th>Partida</th>
-                        <th>Vitória</th>
-                        <th>Tempo</th>
-                        <th>Modo de Jogo</th>
-                        <th>Tabuleiro</th>
-                        <th>Data</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>99</td>
-                        <td>Não</td>
-                        <td>08:55:28</td>
-                        <td>Rivotril</td>
-                        <td>4x4</td>
-                        <td>21/09/2021</td>
-                    </tr>
-                    <tr>
-                        <td>98</td>
-                        <td>Não</td>
-                        <td>08:55:28</td>
-                        <td>Normal</td>
-                        <td>4x4</td>
-                        <td>21/09/2021</td>
-                    </tr>
-                    <tr>
-                        <td>97</td>
-                        <td>Não</td>
-                        <td>08:55:28</td>
-                        <td>Normal</td>
-                        <td>4x4</td>
-                        <td>21/09/2021</td>
-                    </tr>
-                    <tr>
-                        <td>96</td>
-                        <td>Não</td>
-                        <td>08:55:28</td>
-                        <td>Rivotril</td>
-                        <td>4x4</td>
-                        <td>21/09/2021</td>
-                    </tr>
-                    <tr>
-                        <td>95</td>
-                        <td>Não</td>
-                        <td>08:55:28</td>
-                        <td>Rivotril</td>
-                        <td>4x4</td>
-                        <td>21/09/2021</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-      </main>
-    </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles/global.css">
+  <link rel="stylesheet" type="text/css" href="styles/login.css">
+  <link rel="stylesheet" type="text/css" href="styles/profile.css">
+  <link rel="stylesheet" type="text/css" href="styles/ranking.css">
+  <link rel="icon" href="assets/img/logo.png">
+  <title>Campo Minado | Perfil</title>
+
+</head>
+
+<body onload="loadHistory()">
+  <header class="header">
+    <nav class="flex-menu">
+      <div class="menu">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="game.html">Jogar</a></li>
+          <li><a href="ranking.html">Ranking</a></li>
+          <li><a href="user.html">Usuário</a></li>
+          <li class="active"><a href="profile.html">Perfil</a></li>
+        </ul>
+      </div>
+      <div class="menu-logout">
+        <aside class="logout">
+          bem vindo, usuário
+          <a href="login.html" class="logout-link">
+            <img src="assets/img/logout-icon.png" width="25" />
+          </a>
+        </aside>
+      </div>
+    </nav>
+  </header>
+  <main class="content">
+    <div class="container">
+      <div class="panel">
+        <img src="assets/img/user.png" alt="">
+      </div>
+      <div class="status">
+        <h2>Histórico</h2>
+        <table class="tabela">
+          <thead>
+            <tr>
+              <th>Número de Jogos</th>
+              <th>Vitórias</th>
+              <th>Melhor Tempo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>100</td>
+              <td>20</td>
+              <td>05:03:87</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="partida">
+      <table class="tabela">
+        <thead>
+          <tr>
+            <th>Partida</th>
+            <th>Vitória</th>
+            <th>Tempo</th>
+            <th>Modo de Jogo</th>
+            <th>Tabuleiro</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody class="list-body">
+          <tr>
+            <td>99</td>
+            <td>Não</td>
+            <td>08:55:28</td>
+            <td>Rivotril</td>
+            <td>4x4</td>
+            <td>21/09/2021</td>
+          </tr>
+          <tr>
+            <td>98</td>
+            <td>Não</td>
+            <td>08:55:28</td>
+            <td>Normal</td>
+            <td>4x4</td>
+            <td>21/09/2021</td>
+          </tr>
+          <tr>
+            <td>97</td>
+            <td>Não</td>
+            <td>08:55:28</td>
+            <td>Normal</td>
+            <td>4x4</td>
+            <td>21/09/2021</td>
+          </tr>
+          <tr>
+            <td>96</td>
+            <td>Não</td>
+            <td>08:55:28</td>
+            <td>Rivotril</td>
+            <td>4x4</td>
+            <td>21/09/2021</td>
+          </tr>
+          <tr>
+            <td>95</td>
+            <td>Não</td>
+            <td>08:55:28</td>
+            <td>Rivotril</td>
+            <td>4x4</td>
+            <td>21/09/2021</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+
 </html>

@@ -1,83 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="styles/global.css">
-      <link rel="stylesheet" type="text/css" href="styles/game.css">
-      <link rel="icon" href="assets/img/logo.png">
-      
-      <script src="scripts/game.js"></script>
 
-      <title>Campo Minado | Jogar</title>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles/global.css">
+  <link rel="stylesheet" type="text/css" href="styles/game.css">
+  <link rel="icon" href="assets/img/logo.png">
 
-    </head>
+  <script src="scripts/game.js"></script>
 
-    <body>
-      <header class="header">
-        <nav class="flex-menu">
-              <div class="menu">
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li class="active"><a href="game.html">Jogar</a></li>
-                    <li><a href="ranking.html">Ranking</a></li>
-                    <li><a href="user.html">Usuário</a></li>
-                    <li><a href="profile.html">Perfil</a></li>
-                </ul>
-            </div>
-            <div class="menu-logout">
-              <aside class="logout">
-                bem vindo, usuário
-                <a href="login.html" class="logout-link">
-                    <img src="assets/img/logout-icon.png" width="25" />
-                </a>
-              </aside>
-            </div>
-        </nav>
-      </header>
+  <title>Campo Minado | Jogar</title>
 
-      <main class="content">
-        <div class="game-options ">
-          <section>
-            <label>Tamanho do Tabuleiro:</label>
-            <input onclick="handleBombInput()" value="3" id="game-size" class="game-size" type="number" min="3">
-          </section>
-          <section>
-            <label>Número de Bombas:</label>
-            <input value="1" id="game-bombs" class="game-size" type="number" max="3" min="1">
-          </section>
-          <section >
-            <label>Dificuldade:</label>
-            <select id="game-level">
-              <option value="easy">Fácil</option>
-              <option value="normal" selected>Intermediário</option>
-              <option value="hard">Difícil</option>
-            </select>
-          </section>
-          <section >
-            <label>Modo de Jogo:</label>
-            <select id="game-mode">
-              <option value="normal" selected>Normal</option>
-              <option value="rivotril">Rivotril</option>
-            </select>
-          </section>
-        </div>
-        <div class="game">
-          <button class="play-button" onclick="startGame()">Jogar</button>
-          <p class="opened-cells"></p>
-          <p class="time-display"></p>
-          <div class="board"></div>
-        </div>
+</head>
 
-        <section class="cheat-menu">
-          <button class="cheat-button" onclick="cheat()">Trapaça</button>
-        </section>
+<body>
+  <header class="header">
+    <nav class="flex-menu">
+      <div class="menu">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li class="active"><a href="game.html">Jogar</a></li>
+          <li><a href="ranking.html">Ranking</a></li>
+          <li><a href="user.html">Usuário</a></li>
+          <li><a href="profile.html">Perfil</a></li>
+        </ul>
+      </div>
+      <div class="menu-logout">
+        <aside class="logout">
+          bem vindo, usuário
+          <a href="login.html" class="logout-link">
+            <img src="assets/img/logout-icon.png" width="25" />
+          </a>
+        </aside>
+      </div>
+    </nav>
+  </header>
 
-      </main>
-    </body>
+  <main class="content">
+    <div class="game-options ">
+      <section>
+        <label>Tamanho do Tabuleiro:</label>
+        <input onclick="handleBombInput()" value="3" id="game-size" class="game-size" type="number" min="3">
+      </section>
+      <section>
+        <label>Número de Bombas:</label>
+        <input value="1" id="game-bombs" class="game-size" type="number" max="3" min="1">
+      </section>
+      <!-- <section>
+        <label>Dificuldade:</label>
+        <select id="game-level">
+          <option value="easy">Fácil</option>
+          <option value="normal" selected>Intermediário</option>
+          <option value="hard">Difícil</option>
+        </select>
+      </section> -->
+      <section>
+        <label>Modo de Jogo:</label>
+        <select id="game-mode">
+          <option value="normal" selected>Normal</option>
+          <option value="rivotril">Rivotril</option>
+        </select>
+      </section>
+    </div>
+    <div class="game">
+      <button class="play-button" onclick="startGame()">Jogar</button>
+      <p class="opened-cells"></p>
+      <p class="time-display"></p>
+      <div class="board"></div>
+    </div>
+
+    <section class="cheat-menu">
+      <button class="cheat-button" onclick="cheat()">Trapaça</button>
+    </section>
+  </main>
+</body>
+<footer>
+  <table class="alunos-list">
+    <thead>
+      <tr>
+        <th>Jogador</th>
+        <th>Dimensões</th>
+        <th>Bombas</th>
+        <th>Modo</th>
+        <th>Tempo</th>
+        <th>Resultado</th>
+        <th>Data da Partida</th>
+      </tr>
+    </thead>
+    <tbody class="list-body">
+
+    </tbody>
+  </table>
+</footer>
 
 </html>

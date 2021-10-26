@@ -84,7 +84,7 @@ function generateNewBoard() {
         if (element.textContent === "💣") {
           gameOver = true;
           alert("Game Over");
-          //saveHistory("defeat");
+          saveHistory("defeat");
         } else {
           if (element.classList.contains('opened')) return;
           element.classList.add('opened');
@@ -137,10 +137,15 @@ function clearBoard() {
     bombs: 1,
     mode: "normal",
     level: "normal",
-    board: []
+    board: [],
+    bombsPositions: [],
+    finalTime: 0,
+    gameResult: "defeat",
+    startDateTime: new Date(),
   };
 
   clicks = 0;
+  gameOver = false;
 
   const board = document.querySelector(".board");
   board.innerHTML = "";
@@ -156,14 +161,14 @@ function startGame() {
   clearBoard();
   const size = document.querySelector("#game-size").value;
   const bombs = document.querySelector("#game-bombs").value;
-  const level = document.querySelector("#game-level").value;
+  //const level = document.querySelector("#game-level").value;
   const mode = document.querySelector("#game-mode").value;
 
   boardParams.rows = size;
   boardParams.columns = size;
   boardParams.bombs = bombs;
   boardParams.mode = mode;
-  boardParams.level = level;
+  boardParams.level = "normal";
 
   if (mode === "normal") {
     startTimeCount();
@@ -180,12 +185,15 @@ function startTimeCount() {
   let interval = setInterval(() => {
     if (gameOver) {
       clearInterval(interval);
-      boardParams.finalTime = time;
+      console.log(time)
+      //boardParams.finalTime = time;
+      console.log(boardParams.finalTime)
       time = 0;
-      saveHistory("defeat");
+      //saveHistory("defeat");
       return;
     }
     time++;
+    boardParams.finalTime = time;
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
@@ -197,21 +205,21 @@ function startTimeCount() {
 function startRivotrilCount() {
   const timer = document.querySelector(".time-display");
   let totalTime = boardParams.rows * 10; //10 segundos para cada linha
-  console.log(totalTime)
   let interval = setInterval(() => {
     if (gameOver) {
       clearInterval(interval);
-      boardParams.finalTime = totalTime;
+      //boardParams.finalTime = totalTime;
       return;
     } else if (totalTime === 0) {
       clearInterval(interval);
-      boardParams.finalTime = totalTime;
+      //boardParams.finalTime = totalTime;
       alert("Game Over");
       gameOver = true;
       saveHistory("defeat");
       return;
     }
     totalTime = totalTime - 1;
+    boardParams.finalTime = totalTime;
     const minutes = Math.floor(totalTime / 60);
     const seconds = totalTime % 60;
     const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
@@ -236,9 +244,30 @@ function saveHistory(condition) {
   boardParams.gameResult = condition;
   let game = boardParams;
   game.player = "Fischer";
+  console.log(boardParams.finalTime)
   delete game.bombsPositions;
   delete game.board;
   history.push(game);
-  console.log(history);
+  printGameInHistory(game);
+  console.table(history);
+}
+
+function printGameInHistory(game) {
+  const list = document.querySelector(".list-body");
+
+  const minutes = Math.floor(boardParams.finalTime / 60);
+  const seconds = boardParams.finalTime % 60;
+  const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
+  const [secondLeft, secondRight] = String(seconds).padStart(2, "0").split("");
+
+
+  const row = list.insertRow(history.length - 1);
+  row.insertCell(0).innerHTML = game.player;
+  row.insertCell(1).innerHTML = game.rows;
+  row.insertCell(2).innerHTML = game.bombs;
+  row.insertCell(3).innerHTML = game.mode;
+  row.insertCell(4).innerHTML = minuteLeft + minuteRight + ":" + secondLeft + secondRight;;
+  row.insertCell(5).innerHTML = game.gameResult === "win" ? "Vitória" : "Derrota";
+  row.insertCell(6).innerHTML = new Intl.DateTimeFormat('pt-BR').format(game.startDateTime);
 }
 
