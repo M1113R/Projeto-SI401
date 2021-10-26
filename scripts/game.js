@@ -6,7 +6,9 @@ let boardParams = {
   level: "normal",
   board: [],
   bombsPositions: [],
-  finalTime: 0
+  finalTime: 0,
+  gameResult: "defeat",
+  startDateTime: new Date(),
 }
 
 let history = [];
@@ -82,6 +84,7 @@ function generateNewBoard() {
         if (element.textContent === "💣") {
           gameOver = true;
           alert("Game Over");
+          //saveHistory("defeat");
         } else {
           checkSquare();
         }
@@ -138,8 +141,13 @@ function clearBoard() {
   clicks = 0;
 
   const board = document.querySelector(".board");
-
   board.innerHTML = "";
+
+  const timer = document.querySelector(".time-display");
+  timer.innerHTML = "";
+
+  const cellsOpened = document.querySelector(".opened-cells");
+  cellsOpened.innerHTML = "";
 }
 
 function startGame() {
@@ -149,15 +157,17 @@ function startGame() {
   const level = document.querySelector("#game-level").value;
   const mode = document.querySelector("#game-mode").value;
 
-  if (mode === "normal") {
-    startTimeCount();
-  }
-
   boardParams.rows = size;
   boardParams.columns = size;
   boardParams.bombs = bombs;
   boardParams.mode = mode;
   boardParams.level = level;
+
+  if (mode === "normal") {
+    startTimeCount();
+  } else if (mode === "rivotril") {
+    startRivotrilCount();
+  }
 
   generateNewBoard();
 }
@@ -165,14 +175,43 @@ function startGame() {
 function startTimeCount() {
   const timer = document.querySelector(".time-display");
   let time = 0;
-  setInterval(() => {
+  let interval = setInterval(() => {
     if (gameOver) {
+      clearInterval(interval);
       boardParams.finalTime = time;
+      time = 0;
+      saveHistory("defeat");
       return;
     }
     time++;
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
+    const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
+    const [secondLeft, secondRight] = String(seconds).padStart(2, "0").split("");
+    timer.innerHTML = "Tempo: " + minuteLeft + minuteRight + ":" + secondLeft + secondRight;
+  }, 1000);
+}
+
+function startRivotrilCount() {
+  const timer = document.querySelector(".time-display");
+  let totalTime = boardParams.rows * 10; //10 segundos para cada linha
+  console.log(totalTime)
+  let interval = setInterval(() => {
+    if (gameOver) {
+      clearInterval(interval);
+      boardParams.finalTime = totalTime;
+      return;
+    } else if (totalTime === 0) {
+      clearInterval(interval);
+      boardParams.finalTime = totalTime;
+      alert("Game Over");
+      gameOver = true;
+      saveHistory("defeat");
+      return;
+    }
+    totalTime = totalTime - 1;
+    const minutes = Math.floor(totalTime / 60);
+    const seconds = totalTime % 60;
     const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
     const [secondLeft, secondRight] = String(seconds).padStart(2, "0").split("");
     timer.innerHTML = "Tempo: " + minuteLeft + minuteRight + ":" + secondLeft + secondRight;
@@ -187,6 +226,17 @@ function checkSquare() {
   if (clicks === (squares - boardParams.bombs)) {
     gameOver = true;
     alert("WIN!!!");
+    saveHistory("win");
   }
+}
+
+function saveHistory(condition) {
+  boardParams.gameResult = condition;
+  let game = boardParams;
+  game.player = "Fischer";
+  delete game.bombsPositions;
+  delete game.board;
+  history.push(game);
+  console.log(history);
 }
 
