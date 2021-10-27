@@ -23,6 +23,14 @@ const AROUND_CELL_OPERATORS = [
   [1, -1], [1, 0], [1, 1],
 ];
 
+function timeFormat(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
+  const [secondLeft, secondRight] = String(seconds).padStart(2, "0").split("");
+  return minuteLeft + minuteRight + ":" + secondLeft + secondRight;
+}
+
 function handleBombInput() {
   const size = document.querySelector("#game-size").value;
   const bombInput = document.querySelector("#game-bombs");
@@ -72,7 +80,6 @@ function generateNewBoard() {
 
     for (let y = 0; y < boardParams.rows; y++) {
       const $cell = document.createElement('SPAN');
-      //const printableValue = boardParams.board[x][y];
       const printableValue = "";
       $cell.innerHTML = printableValue;
       $cell.id = `${x}-${y}`;
@@ -186,45 +193,35 @@ function startTimeCount() {
     if (gameOver) {
       clearInterval(interval);
       console.log(time)
-      //boardParams.finalTime = time;
       console.log(boardParams.finalTime)
       time = 0;
-      //saveHistory("defeat");
       return;
     }
     time++;
     boardParams.finalTime = time;
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
-    const [secondLeft, secondRight] = String(seconds).padStart(2, "0").split("");
-    timer.innerHTML = "Tempo: " + minuteLeft + minuteRight + ":" + secondLeft + secondRight;
+    timer.innerHTML = "Tempo: " + timeFormat(time);
   }, 1000);
 }
 
 function startRivotrilCount() {
   const timer = document.querySelector(".time-display");
-  let totalTime = boardParams.rows * 10; //10 segundos para cada linha
+  let remaningTime = boardParams.rows * 10; //10 segundos para cada linha
+  let totalTime = 0;
   let interval = setInterval(() => {
     if (gameOver) {
       clearInterval(interval);
-      //boardParams.finalTime = totalTime;
       return;
-    } else if (totalTime === 0) {
+    } else if (remaningTime === 0) {
       clearInterval(interval);
-      //boardParams.finalTime = totalTime;
       alert("Game Over");
       gameOver = true;
       saveHistory("defeat");
       return;
     }
-    totalTime = totalTime - 1;
+    remaningTime = remaningTime - 1;
+    totalTime++;
     boardParams.finalTime = totalTime;
-    const minutes = Math.floor(totalTime / 60);
-    const seconds = totalTime % 60;
-    const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
-    const [secondLeft, secondRight] = String(seconds).padStart(2, "0").split("");
-    timer.innerHTML = "Tempo: " + minuteLeft + minuteRight + ":" + secondLeft + secondRight;
+    timer.innerHTML = "Tempo: " + timeFormat(remaningTime);
   }, 1000);
 }
 
@@ -255,19 +252,19 @@ function saveHistory(condition) {
 function printGameInHistory(game) {
   const list = document.querySelector(".list-body");
 
-  const minutes = Math.floor(boardParams.finalTime / 60);
-  const seconds = boardParams.finalTime % 60;
-  const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
-  const [secondLeft, secondRight] = String(seconds).padStart(2, "0").split("");
-
-
   const row = list.insertRow(history.length - 1);
   row.insertCell(0).innerHTML = game.player;
   row.insertCell(1).innerHTML = game.rows;
   row.insertCell(2).innerHTML = game.bombs;
   row.insertCell(3).innerHTML = game.mode;
-  row.insertCell(4).innerHTML = minuteLeft + minuteRight + ":" + secondLeft + secondRight;;
+  row.insertCell(4).innerHTML = timeFormat(boardParams.finalTime);
   row.insertCell(5).innerHTML = game.gameResult === "win" ? "Vitória" : "Derrota";
-  row.insertCell(6).innerHTML = new Intl.DateTimeFormat('pt-BR').format(game.startDateTime);
+  row.insertCell(6).innerHTML = new Intl.DateTimeFormat('pt-BR', {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(game.startDateTime);
 }
 
