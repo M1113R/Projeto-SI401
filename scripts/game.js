@@ -31,19 +31,20 @@ function timeFormat(time) {
   return minuteLeft + minuteRight + ":" + secondLeft + secondRight;
 }
 
-function handleBombInput() {
-  const size = document.querySelector("#game-size").value;
-  const bombInput = document.querySelector("#game-bombs");
-  bombInput.setAttribute("max", size);
-  bombInput.value = size;
-}
-
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function verifyIfPositionIsABomb(position) {
   return boardParams.bombsPositions.join("").includes(position.toString());
+}
+
+function handleBombInput() {
+  let size = document.querySelector("#game-size").value;
+  size *= size;
+  const bombInput = document.querySelector("#game-bombs");
+  bombInput.setAttribute("max", size - 1);
+  bombInput.value = size - 1;
 }
 
 function cheat() {
@@ -86,6 +87,7 @@ function generateNewBoard() {
       if (boardParams.board[x][y] === "💣") $cell.classList.add("bomb");
 
       $cell.addEventListener("click", function printValue() {
+        if (gameOver) return;
         const element = document.getElementById(`${x}-${y}`);
         element.innerHTML = boardParams.board[x][y];
         if (element.textContent === "💣") {
@@ -168,7 +170,6 @@ function startGame() {
   clearBoard();
   const size = document.querySelector("#game-size").value;
   const bombs = document.querySelector("#game-bombs").value;
-  //const level = document.querySelector("#game-level").value;
   const mode = document.querySelector("#game-mode").value;
 
   boardParams.rows = size;
